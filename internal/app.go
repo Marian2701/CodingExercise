@@ -10,6 +10,7 @@ import (
 	"strconv"
 )
 
+// App defines the core struct for the application, containing store, game board, server, and logger instances.
 type App struct {
 	store  ScoreBaseStoring
 	board  GameBoard
@@ -17,6 +18,7 @@ type App struct {
 	logger *log.Logger
 }
 
+// NewApp returns a new instance of App initialized with provided store, board, nil server, and logger.
 func NewApp(store ScoreBaseStoring, board GameBoard) *App {
 	return &App{
 		store:  store,
@@ -26,6 +28,7 @@ func NewApp(store ScoreBaseStoring, board GameBoard) *App {
 	}
 }
 
+// PageData defines the structure containing lists of countries, active matches, and completed matches.
 type PageData struct {
 	Countries        []models.Countries
 	ActiveMatches    []*models.Game
@@ -209,6 +212,7 @@ func (a *App) InitRoutes() {
 	}
 }
 
+// RunServer starts the HTTP server and logs fatal errors in case of failure.
 func (a *App) RunServer() {
 	if err := a.Server.ListenAndServe(); err != nil {
 		log.Fatal(err)
