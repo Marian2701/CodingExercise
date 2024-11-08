@@ -7,3 +7,7 @@ type Game struct {
 	AwayTeam  Countries
 	AwayScore uint
 }
+
+func (x *Game) GetScore() uint {
+	return x.HomeScore + x.AwayScore
+}
